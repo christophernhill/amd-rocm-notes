@@ -40,4 +40,6 @@ julia --project -e 'using PyCall; pyimport_conda("cartopy.crs", "cartopy")'
 julia --project -e 'using PyCall; pyimport_conda("cmocean", "cmocean","conda-forge")'
 
 julia --project -e 'using Pkg;Pkg.add("Plots");Pkg.add("TimesDates");Pkg.add("SpecialFunctions");Pkg.add("BenchmarkTools")'
-julia --project -e 'using Pkg;Pkg.add("PyPlot")'
+julia --project -e 'using Pkg;Pkg.add("PyPlot");Pkg.add("DataFrames");Pkg.add("PrettyTables")'
+
+julia --project -e 'include("benchmark_shallow_water_model.jl")'
