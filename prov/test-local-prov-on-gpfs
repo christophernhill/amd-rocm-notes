@@ -1,7 +1,14 @@
-RDIR=/tmp/cnh-test
+# RDIR=/tmp/cnh-test
+# mkdir -p /tmp/cnh-test
+
+RDIR=/nobackup/users/cnh
+
+# ======
+
 cd $RDIR
-mkdir testing_$$
-cd    testing_$$
+PD=`pwd`
+tdir=`mktemp -d -p ${PD} testing_XXXXXX`
+cd    ${tdir}
 
 git clone https://github.com/clima/oceananigans.jl
 cd oceananigans.jl
