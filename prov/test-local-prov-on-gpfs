@@ -1,1 +1,41 @@
+RDIR=/tmp/cnh-test
+cd $RDIR
+mkdir $$
+cd    $$
 
+git clone https://github.com/clima/oceananigans.jl
+
+wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.1-linux-x86_64.tar.gz
+tar -xzvf julia-1.6.1-linux-x86_64.tar.gz 
+export JROOT=`pwd`/julia-1.6.1
+# export JROOT=/Applications/Julia-1.6.app/Contents/Resources/julia
+# export JROOT=/tmp/cnh-test/julia-1.6.1
+alias julia=${JROOT}/bin/julia 
+
+plat="Linux"
+# plat="MacOSX"
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-${plat}-x86_64.sh
+chmod +x Miniconda3-latest-${plat}-x86_64.sh
+./Miniconda3-latest-${plat}-x86_64.sh -b -p miniconda3
+. miniconda3/bin/activate && conda create -y --name=py39 python=3.9
+conda activate py39
+conda install -y matplotlib
+conda install -y numpy
+conda install -y cartopy
+conda install -y scipy
+conda install -y --channel=conda-forge cmocean
+
+
+export JULIA_DEPOT_PATH=`pwd`/.julia
+
+julia --project -e "using Pkg; Pkg.instantiate();"
+julia --project -e "using Oceananigans"
+julia --project -e 'using Pkg; Pkg.add("DataDeps")'
+julia --project -e 'using Pkg; Pkg.add("PyCall")'
+julia --project -e 'using PyCall; pyimport_conda("matplotlib.pyplot", "matplotlib")'
+julia --project -e 'using PyCall; pyimport_conda("numpy.ma", "numpy")'
+julia --project -e 'using PyCall; pyimport_conda("cartopy.crs", "cartopy")'
+julia --project -e 'using PyCall; pyimport_conda("cmocean", "cmocean","conda-forge")'
+
+julia --project -e 'using Pkg;Pkg.add("Plots");Pkg.add("TimesDates");Pkg.add("SpecialFunctions");Pkg.add("BenchmarkTools")'
+julia --project -e 'using Pkg;Pkg.add("PyPlot")'
