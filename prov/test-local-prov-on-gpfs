@@ -1,7 +1,7 @@
 RDIR=/tmp/cnh-test
 cd $RDIR
-mkdir $$
-cd    $$
+mkdir testing_$$
+cd    testing_$$
 
 git clone https://github.com/clima/oceananigans.jl
 cd oceananigans.jl
@@ -43,3 +43,5 @@ julia --project -e 'using Pkg;Pkg.add("Plots");Pkg.add("TimesDates");Pkg.add("Sp
 julia --project -e 'using Pkg;Pkg.add("PyPlot");Pkg.add("DataFrames");Pkg.add("PrettyTables")'
 
 julia --project -e 'include("benchmark_shallow_water_model.jl")'
+
+cd ../..
