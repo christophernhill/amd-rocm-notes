@@ -4,6 +4,8 @@ mkdir $$
 cd    $$
 
 git clone https://github.com/clima/oceananigans.jl
+cd oceananigans.jl
+wget https://raw.githubusercontent.com/christophernhill/amd-rocm-notes/main/prov/benchmark_shallow_water_model.jl
 
 wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.1-linux-x86_64.tar.gz
 tar -xzvf julia-1.6.1-linux-x86_64.tar.gz 
