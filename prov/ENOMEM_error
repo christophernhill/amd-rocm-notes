@@ -1,0 +1,75 @@
+ERROR: Error when installing package InvertedIndices:
+IOError: open("/nobackup/users/cnh/testing_2H9Nk6/oceananigans.jl/.julia/packages/InvertedIndices/l2dyo/test/REQUIRE", 577, 33188): not enough memory (ENOMEM)
+Stacktrace:
+  [1] uv_error
+    @ ./libuv.jl:97 [inlined]
+  [2] open(path::String, flags::UInt16, mode::UInt64)
+    @ Base.Filesystem ./filesystem.jl:87
+  [3] sendfile(src::String, dst::String)
+    @ Base.Filesystem ./file.jl:956
+  [4] cptree(src::String, dst::String; force::Bool, follow_symlinks::Bool)
+    @ Base.Filesystem ./file.jl:331
+  [5] cptree(src::String, dst::String; force::Bool, follow_symlinks::Bool)
+    @ Base.Filesystem ./file.jl:328
+  [6] cp(src::String, dst::String; force::Bool, follow_symlinks::Bool)
+    @ Base.Filesystem ./file.jl:353
+  [7] rename(src::String, dst::String; force::Bool)
+    @ Base.Filesystem ./file.jl:943
+  [8] rename
+    @ ./file.jl:940 [inlined]
+  [9] #mv#13
+    @ ./file.jl:397 [inlined]
+ [10] install_archive(urls::Vector{Pair{String, Bool}}, hash::Base.SHA1, version_path::String; io::Base.TTY)
+    @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/Operations.jl:617
+ [11] macro expansion
+    @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/Operations.jl:783 [inlined]
+ [12] (::Pkg.Operations.var"#63#67"{Bool, Pkg.Types.Context, Dict{Base.UUID, Vector{String}}, Channel{Any}, Channel{Tuple{Pkg.Types.PackageSpec, String}}})()
+    @ Pkg.Operations ./task.jl:411
+Stacktrace:
+  [1] pkgerror(::String, ::Vararg{String, N} where N)
+    @ Pkg.Types /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/Types.jl:55
+  [2] macro expansion
+    @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/Operations.jl:806 [inlined]
+  [3] macro expansion
+    @ ./task.jl:387 [inlined]
+  [4] download_source(ctx::Pkg.Types.Context, pkgs::Vector{Pkg.Types.PackageSpec}, urls::Dict{Base.UUID, Vector{String}}; readonly::Bool)
+    @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/Operations.jl:756
+  [5] #download_source#57
+    @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/Operations.jl:730 [inlined]
+  [6] download_source
+    @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/Operations.jl:728 [inlined]
+  [7] add(ctx::Pkg.Types.Context, pkgs::Vector{Pkg.Types.PackageSpec}, new_git::Vector{Base.UUID}; preserve::Pkg.Types.PreserveLevel, platform::Base.BinaryPlatforms.Platform)
+    @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/Operations.jl:1233
+  [8] add(ctx::Pkg.Types.Context, pkgs::Vector{Pkg.Types.PackageSpec}; preserve::Pkg.Types.PreserveLevel, platform::Base.BinaryPlatforms.Platform, kwargs::Base.Iterators.Pairs{Symbol, Base.TTY, Tuple{Symbol}, NamedTuple{(:io,), Tuple{Base.TTY}}})
+    @ Pkg.API /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:203
+  [9] add(pkgs::Vector{Pkg.Types.PackageSpec}; io::Base.TTY, kwargs::Base.Iterators.Pairs{Union{}, Union{}, Tuple{}, NamedTuple{(), Tuple{}}})
+    @ Pkg.API /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:79
+ [10] add(pkgs::Vector{Pkg.Types.PackageSpec})
+    @ Pkg.API /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:77
+ [11] #add#23
+    @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:75 [inlined]
+ [12] add
+    @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:75 [inlined]
+ [13] #add#22
+    @ /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:74 [inlined]
+ [14] add(pkg::String)
+    @ Pkg.API /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:74
+ [15] top-level scope
+    @ none:1
+ERROR: LoadError: ArgumentError: Package BenchmarkTools not found in current path:
+- Run `import Pkg; Pkg.add("BenchmarkTools")` to install the BenchmarkTools package.
+
+Stacktrace:
+ [1] require(into::Module, mod::Symbol)
+   @ Base ./loading.jl:871
+ [2] include(fname::String)
+   @ Base.MainInclude ./client.jl:444
+ [3] top-level scope
+   @ none:1
+in expression starting at /nobackup/users/cnh/testing_2H9Nk6/oceananigans.jl/benchmark_shallow_water_model.jl:3
+(py39) [cnh@node2012 cnh]$ !/usr:p
+/usr/lpp/mmfs/bin/mmlsquota --block-size 1G -u cnh nbusers
+(py39) [cnh@node2012 cnh]$ /usr/lpp/mmfs/bin/mmlsquota --block-size 1G -u cnh nbusers
+                         Block Limits                                    |     File Limits
+Filesystem type             GB      quota      limit   in_doubt    grace |    files   quota    limit in_doubt    grace  Remarks
+nbusers    USR             181        500        500          1     none |   854911 1048576  1048576    10054     none satori.localhost
